@@ -1,0 +1,47 @@
+{
+  "platform_whitelist": {
+    "description": "平台白名单",
+    "type": "list",
+    "hint": "填写允许使用本插件的平台 ID 或平台名称。留空表示不限制，例如 aiocqhttp、telegram。",
+    "default": []
+  },
+  "platform_blacklist": {
+    "description": "平台黑名单",
+    "type": "list",
+    "hint": "填写禁止使用本插件的平台 ID 或平台名称。黑名单优先级高于白名单。",
+    "default": []
+  },
+  "session_whitelist": {
+    "description": "会话白名单",
+    "type": "list",
+    "hint": "填写允许使用本插件的会话 ID。建议在目标群里发送 /sid 后复制完整会话 ID；也支持纯 session_id 或 group_id。",
+    "default": []
+  },
+  "session_blacklist": {
+    "description": "会话黑名单",
+    "type": "list",
+    "hint": "填写禁止使用本插件的会话 ID。建议使用 /sid 获取完整会话 ID；黑名单优先级高于白名单。",
+    "default": []
+  },
+  "enable_llm_report_analysis": {
+    "description": "启用报告模型分析",
+    "type": "bool",
+    "hint": "开启后，🦌报告 会调用模型生成一段简短打卡分析并写入报告图片。",
+    "default": true
+  },
+  "report_analysis_provider_id": {
+    "description": "报告分析模型",
+    "type": "string",
+    "_special": "select_provider",
+    "hint": "可选。留空时使用当前会话配置的默认聊天模型。",
+    "default": ""
+  },
+  "report_analysis_prompt": {
+    "description": "报告分析提示词",
+    "type": "text",
+    "editor_mode": true,
+    "editor_language": "markdown",
+    "hint": "可用变量：{user_name}、{period_label}、{stats_text}。请让模型输出一段适合放入图片的短分析。",
+    "default": "你是一个群聊打卡数据分析助手。请根据下面的 🦌 打卡统计，为用户生成一段 60 字以内、轻松但不夸张的中文分析。不要输出标题，不要使用列表。\\n\\n用户：{user_name}\\n周期：{period_label}\\n统计：\\n{stats_text}"
+  }
+}
